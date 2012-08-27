@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: RequiredValidator.php 521 2007-01-05 13:29:36Z heltem $
+ *  $Id$
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -33,7 +33,7 @@
  * </code>
  *
  * @author     Michael Aichler <aichler@mediacluster.de>
- * @version    $Revision: 521 $
+ * @version    $Revision$
  * @package    propel.validator
  */
 class RequiredValidator implements BasicValidator

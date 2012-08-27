@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  $Id: BaseObject.php 1066 2008-07-17 07:33:35Z ron $
+ *  $Id$
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @author     Hans Lellelid <hans@xmpl.org> (Propel)
  * @author     Frank Y. Kim <frank.kim@clearink.com> (Torque)
  * @author     John D. McNally <jmcnally@collab.net> (Torque)
- * @version    $Revision: 1066 $
+ * @version    $Revision$
  * @package    propel.om
  */
 abstract class BaseObject {
@@ -52,14 +52,6 @@ abstract class BaseObject {
 	protected $modifiedColumns = array();
 
 	/**
-	 * Gets set to true after validate() is called.
-	 * Used so we don't validate the same object multiple times if it hasn't changed.
-	 *
-	 * @var bool
-	 */
-	protected $_validated = false;
-	
-	/*
 	 * Empty constructor (this allows people with their own BaseObject implementation to use its constructor)
 	 */
 	public function __construct() {
@@ -154,9 +146,6 @@ abstract class BaseObject {
 		{
 			$this->modifiedColumns = array();
 		}
-
-		// we can't be sure what's changed now, so reset validated status
-		$this->_validated = false;
 	}
 
 	/**
@@ -210,13 +199,4 @@ abstract class BaseObject {
 		return Propel::log(get_class($this) . ': ' . $msg, $priority);
 	}
 
-	/**
-	 * This function should be called whenever a column is modified, it resets the current state of validation
-	 *
-	 * @return void
-	 */
-	protected function markDirty()
-	{
-		$this->_validated = false;
-	}
 }

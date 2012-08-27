@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: BasePeer.php 1060 2008-06-13 12:52:23Z hans $
+ *  $Id$
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -35,7 +35,7 @@
  * @author     John D. McNally <jmcnally@collab.net> (Torque)
  * @author     Brett McLaughlin <bmclaugh@algx.net> (Torque)
  * @author     Stephen Haberman <stephenh@chase3000.com> (Torque)
- * @version    $Revision: 1060 $
+ * @version    $Revision$
  * @package    propel.util
  */
 class BasePeer
@@ -160,24 +160,6 @@ class BasePeer
 				self::populateStmtValues($stmt, $selectParams, $dbMap, $db);
 				$stmt->execute();
 				$affectedRows = $stmt->rowCount();
-				
-			} catch (PDOException $e) {
-				Propel::log($e->getMessage(), Propel::LOG_ERR);
-				
-				if ($e->getCode() == 23000) {
-					// duplicate key
-					require_once('propel/Exception/DuplicateKey.php');
-					throw new Propel_Exception_DuplicateKey("Unable to execute DELETE statement.", $e);
-				}
-				elseif ($e->getCode() == 40001) {
-					// deadlock found
-					require_once('propel/Exception/Deadlock.php');
-					throw new Propel_Exception_Deadlock("Unable to execute DELETE statement.", $e);
-				}
-				else {
-					throw new PropelException("Unable to execute DELETE statement.", $e);
-				}
-				
 			} catch (Exception $e) {
 				Propel::log($e->getMessage(), Propel::LOG_ERR);
 				throw new PropelException("Unable to execute DELETE statement.",$e);
@@ -214,23 +196,6 @@ class BasePeer
 			$stmt = $con->prepare($sql);
 			$stmt->execute();
 			return $stmt->rowCount();
-			
-		} catch (PDOException $e) {
-			Propel::log($e->getMessage(), Propel::LOG_ERR);
-			
-			if ($e->getCode() == 23000) {
-				// duplicate key
-				require_once('propel/Exception/DuplicateKey.php');
-				throw new Propel_Exception_DuplicateKey("Unable to execute DELETE statement.", $e);
-			}
-			elseif ($e->getCode() == 40001) {
-				// deadlock found
-				require_once('propel/Exception/Deadlock.php');
-				throw new Propel_Exception_Deadlock("Unable to execute DELETE statement.", $e);
-			}
-			else {
-				throw new PropelException("Unable to execute DELETE statement.", $e);
-			}
 		} catch (Exception $e) {
 			Propel::log($e->getMessage(), Propel::LOG_ERR);
 			throw new PropelException("Unable to perform DELETE ALL operation.", $e);
@@ -329,24 +294,6 @@ class BasePeer
 			self::populateStmtValues($stmt, self::buildParams($qualifiedCols, $criteria), $dbMap, $db);
 			$stmt->execute();
 
-
-		} catch (PDOException $e) {
-			Propel::log($e->getMessage(), Propel::LOG_ERR);
-			
-			if ($e->getCode() == 23000) {
-				// duplicate key
-				require_once('propel/Exception/DuplicateKey.php');
-				throw new Propel_Exception_DuplicateKey("Unable to execute INSERT statement.", $e);
-			}
-			elseif ($e->getCode() == 40001) {
-				// deadlock found
-				require_once('propel/Exception/Deadlock.php');
-				throw new Propel_Exception_Deadlock("Unable to execute INSERT statement.", $e);
-			}
-			else {
-				throw new PropelException("Unable to execute INSERT statement.", $e);
-			}
-			
 		} catch (Exception $e) {
 			Propel::log($e->getMessage(), Propel::LOG_ERR);
 			throw new PropelException("Unable to execute INSERT statement.", $e);
@@ -466,23 +413,6 @@ class BasePeer
 				$affectedRows = $stmt->rowCount();
 
 				$stmt = null; // close
-				
-			} catch (PDOException $e) {
-				Propel::log($e->getMessage(), Propel::LOG_ERR);
-				
-				if ($e->getCode() == 23000) {
-					// duplicate key
-					require_once('propel/Exception/DuplicateKey.php');
-					throw new Propel_Exception_DuplicateKey("Unable to execute UPDATE statement.", $e);
-				}
-				elseif ($e->getCode() == 40001) {
-					// deadlock found
-					require_once('propel/Exception/Deadlock.php');
-					throw new Propel_Exception_Deadlock("Unable to execute UPDATE statement.", $e);
-				}
-				else {
-					throw new PropelException("Unable to execute UPDATE statement.", $e);
-				}
 
 			} catch (Exception $e) {
 				if ($stmt) $stmt = null; // close

@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  $Id: DBNone.php 898 2008-01-02 00:18:44Z hans $
+ *  $Id$
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -26,7 +26,7 @@
  * @author     Hans Lellelid <hans@xmpl.org> (Propel)
  * @author     Jon S. Stevens <jon@clearink.com> (Torque)
  * @author     Brett McLaughlin <bmclaugh@algx.net> (Torque)
- * @version    $Revision: 898 $
+ * @version    $Revision$
  * @package    propel.adapter
  */
 class DBNone extends DBAdapter {

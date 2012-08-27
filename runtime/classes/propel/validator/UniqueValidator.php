@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: UniqueValidator.php 989 2008-03-11 14:29:30Z heltem $
+ *  $Id$
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -31,7 +31,7 @@
  * </code>
  *
  * @author     Michael Aichler <aichler@mediacluster.de>
- * @version    $Revision: 989 $
+ * @version    $Revision$
  * @package    propel.validator
  */
 class UniqueValidator implements BasicValidator
