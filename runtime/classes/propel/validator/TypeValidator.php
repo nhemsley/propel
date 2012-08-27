@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id$
+ *  $Id: TypeValidator.php 964 2008-02-10 20:42:38Z hans $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -31,7 +31,7 @@
  * </code>
  *
  * @author     Hans Lellelid <hans@xmpl.org>
- * @version    $Revision$
+ * @version    $Revision: 964 $
  * @package    propel.validator
  */
 class TypeValidator implements BasicValidator

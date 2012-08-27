@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id$
+ *  $Id: NotMatchValidator.php 521 2007-01-05 13:29:36Z heltem $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -43,7 +43,7 @@
  *
  * @author     Michael Aichler <aichler@mediacluster.de>
  * @author     Hans Lellelid <hans@xmpl.org>
- * @version    $Revision$
+ * @version    $Revision: 521 $
  * @package    propel.validator
  */
 class NotMatchValidator implements BasicValidator

@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id$
+ *  $Id: Propel.php 989 2008-03-11 14:29:30Z heltem $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -37,7 +37,7 @@ require 'propel/util/PropelPDO.php';
  * @author     Martin Poeschl <mpoeschl@marmot.at> (Torque)
  * @author     Henning P. Schmiedehausen <hps@intermeta.de> (Torque)
  * @author     Kurt Schrader <kschrader@karmalab.org> (Torque)
- * @version    $Revision$
+ * @version    $Revision: 989 $
  * @package    propel
  */
 class Propel
@@ -559,6 +559,21 @@ class Propel
 		} // if mode == CONNECTION_WRITE
 
 	} // getConnection()
+	
+	/**
+	 * Returns a read or write connections depending on the value of Propel::$forceMasterConnection.
+	 *
+	 * Hacked by shane.
+	 *
+	 * @return     PDO A database connection of the given class (PDO, PropelPDO, SlavePDO or user-defined)
+	 */
+	public static function getReadConnection($name = null)
+	{
+		if (self::getForceMasterConnection())
+			return self::getConnection($name, Propel::CONNECTION_WRITE);
+			
+		return self::getConnection($name, Propel::CONNECTION_READ);
+	}
 
 	/**
 	 * Opens a new PDO connection for passed-in db name.
@@ -827,6 +842,12 @@ class Propel
 	{
 		return self::$instancePoolingEnabled;
 	}
+
+	public static function getConnectionMap()
+	{
+		return self::$connectionMap;
+	}
+
 }
 
 spl_autoload_register(array('Propel', 'autoload'));

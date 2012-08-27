@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  $Id$
+ *  $Id: DatabaseMap.php 521 2007-01-05 13:29:36Z heltem $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -37,7 +37,7 @@
  * @author     Hans Lellelid <hans@xmpl.org> (Propel)
  * @author     John D. McNally <jmcnally@collab.net> (Torque)
  * @author     Daniel Rall <dlr@collab.net> (Torque)
- * @version    $Revision$
+ * @version    $Revision: 521 $
  * @package    propel.map
  */
 class DatabaseMap {

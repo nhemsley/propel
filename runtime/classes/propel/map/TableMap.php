@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id$
+ *  $Id: TableMap.php 1073 2008-08-07 00:32:16Z soenke $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -38,7 +38,7 @@
  * @author     Hans Lellelid <hans@xmpl.org> (Propel)
  * @author     John D. McNally <jmcnally@collab.net> (Torque)
  * @author     Daniel Rall <dlr@finemaltcoding.com> (Torque)
- * @version    $Revision$
+ * @version    $Revision: 1073 $
  * @package    propel.map
  */
 class TableMap {
@@ -92,7 +92,6 @@ class TableMap {
 		if (false !== ($pos = strpos($name, '.'))) {
 			$name = substr($name, $pos + 1);
 		}
-		$name = strtoupper($name);
 		return $name;
 	}
 
@@ -330,7 +329,7 @@ class TableMap {
 		$col = new ColumnMap($name, $this);
 
 		if ($fkTable && $fkColumn) {
-			if (strpos($fkColumn, '.') > 0 && strpos($fkColumn, $fkTable) !== false) {
+			if (strpos($fkColumn, '.') > 0 && substr($fkColumn, $fkTable) !== false) {
 				$fkColumn = substr($fkColumn, strlen($fkTable) + 1);
 			}
 			$col->setForeignKey($fkTable, $fkColumn);

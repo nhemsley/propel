@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  $Id: DBNone.php 898 2008-01-02 00:18:44Z hans $
+ *  $Id: DBSybase.php 784 2007-11-08 10:15:50Z heltem $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -21,22 +21,18 @@
  */
 
 /**
- * This adapter  is used when you do not have a database installed.
+ * This is used to connect to a Sybase database.
+ *
+ * <B>NOTE:</B><I>Currently JConnect does not implement the required
+ * methods for ResultSetMetaData, and therefore the village API's may
+ * not function.  For connection pooling, everything works.</I>
  *
  * @author     Hans Lellelid <hans@xmpl.org> (Propel)
- * @author     Jon S. Stevens <jon@clearink.com> (Torque)
- * @author     Brett McLaughlin <bmclaugh@algx.net> (Torque)
- * @version    $Revision: 898 $
+ * @author     Jeff Brekke <ekkerbj@netscape.net> (Torque)
+ * @version    $Revision: 784 $
  * @package    propel.adapter
  */
-class DBNone extends DBAdapter {
-
-	/**
-	 * @see        DBAdapter::initConnection()
-	 */
-	public function initConnection(PDO $con, array $settings)
-	{
-	}
+class DBSybase extends DBAdapter {
 
 	/**
 	 * This method is used to ignore case.
@@ -46,7 +42,7 @@ class DBNone extends DBAdapter {
 	 */
 	public function toUpperCase($in)
 	{
-		return $in;
+		return "UPPER(" . $in . ")";
 	}
 
 	/**
@@ -57,7 +53,7 @@ class DBNone extends DBAdapter {
 	 */
 	public function ignoreCase($in)
 	{
-		return $in;
+		return "UPPER(" . $in . ")";
 	}
 
 	/**
@@ -69,7 +65,7 @@ class DBNone extends DBAdapter {
 	 */
 	public function concatString($s1, $s2)
 	{
-		return ($s1 . $s2);
+		return "($s1 + $s2)";
 	}
 
 	/**
@@ -82,7 +78,7 @@ class DBNone extends DBAdapter {
 	 */
 	public function subString($s, $pos, $len)
 	{
-		return substr($s, $pos, $len);
+		return "SUBSTRING($s, $pos, $len)";
 	}
 
 	/**
@@ -93,7 +89,22 @@ class DBNone extends DBAdapter {
 	 */
 	public function strLength($s)
 	{
-		return strlen($s);
+		return "LEN($s)";
 	}
 
+	/**
+	 * @see        DBAdapter::quoteIdentifier()
+	 */
+	public function quoteIdentifier($text)
+	{
+		return '[' . $text . ']';
+	}
+
+	/**
+	 * @see        DBAdapter::random()
+	 */
+	public function random($seed = null)
+	{
+		return 'rand('.((int) $seed).')';
+	}
 }

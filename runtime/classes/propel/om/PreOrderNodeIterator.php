@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  $Id$
+ *  $Id: PreOrderNodeIterator.php 563 2007-02-01 09:45:55Z heltem $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -24,7 +24,7 @@
  * Pre-order node iterator for Node objects.
  *
  * @author     Dave Lawson <dlawson@masterytech.com>
- * @version    $Revision$
+ * @version    $Revision: 563 $
  * @package    propel.om
  */
 class PreOrderNodeIterator implements Iterator

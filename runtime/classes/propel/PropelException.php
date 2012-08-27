@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id$
+ *  $Id: PropelException.php 521 2007-01-05 13:29:36Z heltem $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -22,7 +22,7 @@
 /**
  * The base class of all exceptions thrown by Propel.
  * @author     Hans Lellelid <hans@xmpl.org>
- * @version    $Revision$
+ * @version    $Revision: 521 $
  * @package    propel
  */
 class PropelException extends Exception {
@@ -37,20 +37,23 @@ class PropelException extends Exception {
 		if ($p2 !== null) {
 			$msg = $p1;
 			$cause = $p2;
+			$code = (is_int($p2->code) ? $p2->code : null);
 		} else {
 			if ($p1 instanceof Exception) {
 				$msg = "";
 				$cause = $p1;
+				$code = $p2;
 			} else {
 				$msg = $p1;
+				$code = 0;
 			}
 		}
 
-		parent::__construct($msg);
+		parent::__construct($msg, $code);
 
 		if ($cause !== null) {
 			$this->cause = $cause;
-			$this->message .= " [wrapped: " . $cause->getMessage() ."]";
+			$this->message .= " [wrapped: " . $cause->getMessage() ." " . $code . "]";
 		}
 	}
 

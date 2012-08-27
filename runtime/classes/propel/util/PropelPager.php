@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id$
+ *  $Id: PropelPager.php 563 2007-02-01 09:45:55Z heltem $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -96,7 +96,7 @@
  *
  *
  * @author     Rob Halff <info@rhalff.com>
- * @version    $Revision$
+ * @version    $Revision: 563 $
  * @copyright  Copyright (c) 2004 Rob Halff: LGPL - See LICENCE
  * @package    propel.util
  */

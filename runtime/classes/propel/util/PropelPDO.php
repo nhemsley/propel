@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id$
+ *  $Id: PropelPDO.php 1067 2008-08-06 07:37:21Z ron $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -116,13 +116,14 @@ class PropelPDO extends PDO {
 	 */
 	public function beginTransaction()
 	{
-		$return = true;
-		$opcount = $this->getNestedTransactionCount();
-		if ( $opcount === 0 ) {
-			$return = parent::beginTransaction();
-		}
-		$this->incrementNestedTransactionCount();
-		return $return;
+		// store previous value of forceMasterConnection
+		$this->previousForceMasterConnection = Propel::getForceMasterConnection();
+
+		// in master/slave environment we always want to use master when in a transaction
+		Propel::setForceMasterConnection(true);
+
+		// start the transaction
+		return parent::beginTransaction();
 	}
 
 	/**
@@ -131,14 +132,15 @@ class PropelPDO extends PDO {
 	 */
 	public function commit()
 	{
-		$return = true;
-		$opcount = $this->getNestedTransactionCount();
-		if ($opcount > 0) {
-			if ($opcount === 1) {
-				$return = parent::commit();
-			}
-			$this->decrementNestedTransactionCount();
-		}
+		// commit the transaction
+		$return = parent::commit();
+
+		// reset force master value
+		Propel::setForceMasterConnection($this->previousForceMasterConnection);
+
+		// reset previous value
+		$this->previousForceMasterConnection = null;
+
 		return $return;
 	}
 
@@ -148,14 +150,15 @@ class PropelPDO extends PDO {
 	 */
 	public function rollBack()
 	{
-		$return = true;
-		$opcount = $this->getNestedTransactionCount();
-		if ($opcount > 0) {
-			if ($opcount === 1) {
-				$return = parent::rollBack();
-			}
-			$this->decrementNestedTransactionCount();
-		}
+		// rollback
+		$return = parent::rollBack();
+
+		// reset force master value
+		Propel::setForceMasterConnection($this->previousForceMasterConnection);
+
+		// reset previous value
+		$this->previousForceMasterConnection = null;
+
 		return $return;
 	}
 
@@ -228,6 +231,12 @@ class PropelPDO extends PDO {
 	public function clearStatementCache()
 	{
 		$this->preparedStatements = array();
+	}
+	
+	
+	public function getPreparedStatements()
+	{
+		return $this->preparedStatements;
 	}
 
 }
