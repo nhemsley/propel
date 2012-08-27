@@ -15,12 +15,19 @@
   "include-path": ["runtime/classes", "generator/classes"],
   "require": {
     "php": ">=5.2.4",
-    "phing/phing": ">=2.4.12,2.4.*"
+    "phing/phing": "=2.3.4"
   },
   "extra": {
     "branch-alias": {
       "dev-master": "1.6-dev"
     }
   },
-  "bin": ["generator/bin/propel-gen", "generator/bin/propel-gen.bat"]
+  "bin": ["generator/bin/propel-gen", "generator/bin/propel-gen.bat"],
+	"repositories": [
+        {
+            "type": "vcs",
+            "url": "http://github.com/nhemsley/phing"
+        }
+    ],
+
 }
