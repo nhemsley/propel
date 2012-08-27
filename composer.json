@@ -23,11 +23,10 @@
     }
   },
   "bin": ["generator/bin/propel-gen", "generator/bin/propel-gen.bat"],
-	"repositories": [
+   "repositories": [
         {
             "type": "vcs",
             "url": "http://github.com/nhemsley/phing"
         }
-    ],
-
+    ]
 }
