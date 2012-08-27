@@ -13,7 +13,13 @@
       "classmap": ["runtime/classes", "generator/classes"]
   },
   "include-path": ["runtime/classes", "generator/classes"],
-  "require": {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://github.com/nhemsley/phing"
+        }
+    ],
+    "require": {
     "php": ">=5.2.4",
     "phing/phing": "=2.3.4"
   },
@@ -22,11 +28,5 @@
       "dev-master": "1.6-dev"
     }
   },
-  "bin": ["generator/bin/propel-gen", "generator/bin/propel-gen.bat"],
-   "repositories": [
-        {
-            "type": "vcs",
-            "url": "http://github.com/nhemsley/phing"
-        }
-    ]
+  "bin": ["generator/bin/propel-gen", "generator/bin/propel-gen.bat"]
 }
